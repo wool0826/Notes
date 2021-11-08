@@ -20,3 +20,16 @@ dependencies {
 test {
     useJUnitPlatform()
 }
+
+tasks.register("hello") {
+    doLast {
+        println 'hello world!'
+    }
+}
+
+tasks.register('intro') {
+    dependsOn tasks.hello // hello를 먼저 수행하고 난 뒤, intro가 수행됨
+    doLast {
+        println "I'm Gradle"
+    }
+}
