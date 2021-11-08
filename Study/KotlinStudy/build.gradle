@@ -1,3 +1,7 @@
+import org.gradle.work.ChangeType
+import org.gradle.work.Incremental
+import org.gradle.work.InputChanges
+
 plugins {
     id 'java'
     id 'org.jetbrains.kotlin.jvm' version '1.4.31'
@@ -12,13 +16,24 @@ repositories {
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib"
+    implementation "org.jetbrains.kotlin:kotlin-reflect:1.4.31"
+
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
-    implementation "org.jetbrains.kotlin:kotlin-reflect:1.4.31"
+}
+
+println 'This is executed during the configuration phase.'
+
+tasks.register('configured') {
+    println 'This is also executed during the configuration phase, because :configured is used in the build.'
 }
 
 test {
     useJUnitPlatform()
+
+    doLast {
+        println 'This is executed during the test phase.'
+    }
 }
 
 tasks.register("hello") {
@@ -33,3 +48,45 @@ tasks.register('intro') {
         println "I'm Gradle"
     }
 }
+
+// 이 클래스 자체를 groovy 파일로 만들어서 repository에 올리면
+// 외부에서 해당 task를 사용할 수 있다.
+abstract class IncrementalReverseTask extends DefaultTask {
+    @Incremental
+    @PathSensitive(PathSensitivity.NAME_ONLY)
+    @InputDirectory
+    abstract DirectoryProperty getInputDir()
+
+    @OutputDirectory
+    abstract DirectoryProperty getOutputDir()
+
+    @Input
+    abstract Property<String> getInputProperty() // boolean, String, enum, List 지원
+
+    @TaskAction
+    void execute(InputChanges inputChanges) {
+        println(inputChanges.incremental
+            ? 'Executing incrementally'
+            : 'Executing non-incrementally'
+        )
+
+        inputChanges.getFileChanges(inputDir).each { change ->
+            if (change.fileType == FileType.DIRECTORY) return
+
+            println("${change.changeType}: ${change.normalizedPath}")
+            def targetFile = outputDir.file(change.normalizedPath).get().asFile
+            if (change.changeType == ChangeType.REMOVED) {
+                targetFile.delete()
+            } else {
+                targetFile.text = change.file.text.reverse()
+            }
+        }
+    }
+}
+
+tasks.register('incrementalReverse', IncrementalReverseTask) {
+    inputDir = file('inputs')
+    outputDir = file("$buildDir/outputs")
+    inputProperty = project.properties['taskInputProperty'] ?: 'original'
+}
+

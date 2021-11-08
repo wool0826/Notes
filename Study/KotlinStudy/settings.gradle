@@ -1,2 +1,2 @@
 rootProject.name = 'KotlinStudy'
-
+println 'This is executed during the initialization phase..'
