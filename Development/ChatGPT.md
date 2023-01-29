@@ -82,7 +82,7 @@ Supervised Learning 방식에서는 해당위치에서 나올 수 있는 값을 
     - OUTPUT: Policy Model
 4. Evaluation Step
 
-RLHF 는 다음과 같은 3가지 Step이 존재하는데요. 하나씩 확인해보겠습니다.
+RLHF 는 다음과 같은 3가지 Step(평가 단계는 제외)이 존재하는데요. 하나씩 확인해보겠습니다.
 
 1단계는 한 번만 수행되고, 2단계, 3단계는 반복적으로 수행될수 있습니다.
 
@@ -136,7 +136,6 @@ SFT Model(1번 스텝에서 학습한 모델)의 outputs 을 평가하는 모델
 
 후보 단어들로는 "게임", "코딩", "경범죄", "운동", "애니메이션 감상", "피아노 연주", "책 읽기" 등등이 나올 수 있습니다.
 
-
 #### 2. 1번에서 나온 결과물에 순위를 매깁니다.
 
 1번에서 나온 결과물을 특정 기준(사람이 매기거나, 특정 가이드라인을 생성해놓고 사용)으로 순위를 매깁니다.
@@ -156,7 +155,7 @@ SFT Model(1번 스텝에서 학습한 모델)의 outputs 을 평가하는 모델
 
 ### Proximal Policy Optimization Step
 
-SFT Model(1번에서 생성된 모델)을 Reinforcement Learning 으로 fine-tuning 하는 단계입니다.
+SFT Model(1번에서 생성된 모델)을 강화학습으로 fine-tuning 하는 단계입니다.
 
 
 
