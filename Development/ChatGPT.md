@@ -6,7 +6,8 @@
 
 이전 모델인 GPT-3 보다 상당한 발전이 있는 Large Language Model (LLM)
 
-[사진]
+![capability-versus-alignment-in-machine-learning---how-chatGPT-works--1-](https://user-images.githubusercontent.com/19607962/215320014-22c213d2-6ee2-4708-ba7c-2a413baea7c3.png)
+
 
 일반적인 LLM 모델들은 Capability(precise = 정밀도)는 높지만, Alignment(accuracy = 정확도)는 낮은 문제가 있습니다.
 즉, 학습된 결과에 대응되는 응답은 잘 생성하지만, 실제 사용자들이 원하는 응답을 주는 확률이 낮았습니다.
@@ -83,6 +84,7 @@ Masked-Language-Modeling = **완성된 문장의 빈 곳을 채워넣는 것에 
 RLHF 는 다음과 같은 3가지 Step이 존재하는데요. 하나씩 확인해보겠습니다.
 
 1단계는 한 번만 수행되고, 2단계, 3단계는 반복적으로 수행될수 있습니다.
+
 👉 3단계에서 생성된 Policy Model로, 새로 2번단계를 수행해서 Reward Model의 최적화를 수행할 수 있습니다.
 
 ### Supervised Fine Tuning Step
