@@ -23,7 +23,7 @@
 
 이러한 문제를 해결하기 위해 Supervised Learning(지도학습) 이외에도 Reinforcement Learning(강화학습)을 같이 사용하여 해결하였습니다.
 
-다른 프로그램과의 차이점이 바로 이 **RLHF(Reinforcement Learning from Human Feedback)**에서 발생하게 됩니다.
+다른 프로그램과의 차이점이 바로 이 **RLHF(Reinforcement Learning from Human Feedback)** 에서 발생하게 됩니다.
 RLHF를 활용하여 사람의 Feedback 을 학습과정에 포함시켜서, 해롭거나, 신뢰성이 낮거나, 한 쪽 사상에 치우친 응답들을 최소화합니다.
 
 ChatGPT가 RLHF 라는 기술이 도입된 최초의 상용 프로그램이라고 하네요.
