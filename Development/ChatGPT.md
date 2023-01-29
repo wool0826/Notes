@@ -54,8 +54,8 @@ Supervised Learning 방식에서는 해당위치에서 나올 수 있는 값을 
 
 두 방식의 학습방식을 보시면 아실 수 있겠지만,
 
-Next-Token-Prediction = 계속 **문장을 만들어내는 것에 특화**되어있습니다.
-Masked-Language-Modeling = **완성된 문장의 빈 곳을 채워넣는 것에 특화**되어있습니다. 
+- Next-Token-Prediction = 계속 **문장을 만들어내는 것에 특화**되어있습니다.
+- Masked-Language-Modeling = **완성된 문장의 빈 곳을 채워넣는 것에 특화**되어있습니다. 
 
 👉 ChatGPT 에서는 문장을 생성해야하기 때문에, **Next-Token-Prediction** 방식을 사용했다고 합니다.
 
@@ -69,6 +69,7 @@ Masked-Language-Modeling = **완성된 문장의 빈 곳을 채워넣는 것에 
 > 일반적인 LLM 모델들은 Capability(precise = 정밀도)는 높지만, Alignment(accuracy = 정확도)는 낮은 문제가 있습니다.
 
 위 두 방식은 문맥을 이해하고 생성하는 것이 아니라, 확률분포에 의해 만들기 때문에 정확도가 낮은 한계가 있습니다.
+
 **이러한 문제를 해결하기 위해서 ChatGPT-3에서는 RLHF를 활용하게 됩니다.**
 
 ## 3. Reinforcement Learning from Human Feedback
