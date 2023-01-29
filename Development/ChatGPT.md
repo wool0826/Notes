@@ -4,7 +4,7 @@
 
 ## 1. 개요
 
-이전 모델인 GPT-3 보다 상당한 발전이 있는 Large Language Model (LLM)
+이전 모델인 GPT-3 보다 상당한 발전을 이루어낸 Large Language Model (LLM)
 
 ![capability-versus-alignment-in-machine-learning---how-chatGPT-works--1-](https://user-images.githubusercontent.com/19607962/215320014-22c213d2-6ee2-4708-ba7c-2a413baea7c3.png)
 
