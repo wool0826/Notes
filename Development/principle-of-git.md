@@ -4,12 +4,11 @@
 ### objects
 
 커밋된 정보(tree) 또는 데이터(blob)를 objects 폴더 하위에 저장합니다.
-저장할 때, 해쉬값을 기준으로 변경이 되었는지를 확인할 수 있습니다.
+저장할 때는 해당 데이터의 내용을 해싱하여 파일명(key)로 사용합니다.
+
+데이터 자체를 해싱하기 때문에, 조금이라도 수정사항이 생기면 key 값이 변경되어서, 수정사항이 존재하는지 쉽게 확인할 수 있습니다.
 
 <img width="724" alt="스크린샷 2023-07-30 14 05 16" src="https://github.com/wool0826/Notes/assets/19607962/1fa9644c-d15f-4feb-8854-5ab5d83eff48">
-
-아래 스크린샷을 보시면, 똑같은 a.txt 인데도 저장된 값이 다른 것을 확인할 수 있습니다.
-데이터를 SHA-1 로 해싱하여 데이터가 조금만 변경되어도 파일이 변경되었음을 감지할 수 있습니다.
 
 <img width="300" alt="스크린샷 2023-07-30 13 52 26" src="https://github.com/wool0826/Notes/assets/19607962/2be623d5-8aec-4eec-b235-6249f143f275">
 
@@ -22,6 +21,7 @@
 ### index
 
 인덱스에는 현재 staging area 에 반영되어있는 변경사항을 확인할 수 있습니다.
+스냅샷이라고 볼 수 있습니다.
 
 <img width="539" alt="스크린샷 2023-07-30 14 32 30" src="https://github.com/wool0826/Notes/assets/19607962/7837ed9e-f253-439b-948f-4ddcb20aca46">
 
@@ -80,6 +80,22 @@ remote 항목을 보면, 어떤 url 에서, 어떤 ref 정보를 가져올 지 �
 만약 이렇게 수정하면 master 브랜치의 정보만 가져올 수 있습니다.
 
 ## 어떻게 변경사항을 추적하는지?
+
+### Working Directory 에서의 변경사항 추적
+
+lstat 이라고하는 리눅스 시스템 콜을 사용한다고 합니다.
+
+https://wariua.github.io/man-pages-ko/lstat%282%29/
+파일의 상태를 얻어와서 변경이 되었는지 여부로 판단한다고 하는 것 같습니다.
+
+### 실제 Diff 계산은 어떻게 하는지?
+
+#### ChatGPT 발 정보
+~~~
+1. **xdelta**: Xdelta is a binary delta compression algorithm used by Git to store differences between versions of binary files. It calculates the delta (difference) between two binary files and stores only the changes required to transform one version into the other. This approach is efficient for large binary files that change incrementally, as it avoids storing redundant data.
+
+2. **libxdiff**: Libxdiff is another library used by Git for delta compression, particularly for text-based files. It is similar to xdelta but optimized for text files. Libxdiff can calculate the differences between two text files and store only the changes required to go from one version to the other. This is beneficial for code files and other text-based formats that developers typically work with.
+~~~
 
 ## 보면서 생각해 본 코드?
 
