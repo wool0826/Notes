@@ -45,11 +45,39 @@ ref: refs/heads/feature/1
 
 ### config
 
+config 파일에서는 말 그대로 git 설정들을 확인할 수 있는데요.
+원격저장소의 정보에 대해서도 저장되어있습니다.
 
+~~~
+[core]
+	repositoryformatversion = 0
+	filemode = true
+	bare = false
+	logallrefupdates = true
+	ignorecase = true
+	precomposeunicode = true
+[user]
+	name = wool0826
+	email = chanwool94@gmail.com
+[remote "origin"]
+	url = https://wool0826@github.com/wool0826/HowHugeIsTheMethod.git
+	fetch = +refs/heads/*:refs/remotes/origin/*
+[branch "main"]
+	remote = origin
+	merge = refs/heads/main
+[remote "oss"]
+	url = https:/~~~~/~~~~/HowHugeIsTheMethod.git
+	fetch = +refs/heads/*:refs/remotes/oss/*
+~~~
 
-### description
-### hooks
-### info
+remote 항목을 보면, 어떤 url 에서, 어떤 ref 정보를 가져올 지 설정되어있습니다.
+
+`fetch = +refs/heads/*:refs/remotes/origin/*`
+- refs/heads 하위의 모든 정보와
+- refs/remotes/origin/ 하위의 모든 정보를 동기화하겠다.
+
+`fetch = +refs/heads/master:refs/remotes/origin/master`
+만약 이렇게 수정하면 master 브랜치의 정보만 가져올 수 있습니다.
 
 ## 어떻게 변경사항을 추적하는지?
 
