@@ -8,11 +8,9 @@ https://velog.io/@jshme/diff-algorithm-deep-dive-1
 - patience
 - histogram
 
-찾아보니 Longest Common Subsequence 와 유사한 알고리즘들을 사용하네요
-
 ### myers
 
-> https://gist.github.com/adamnew123456/37923cf53f51d6b9af32a539cdfa7cc4
+> https://blog.jcoglan.com/2017/02/12/the-myers-diff-algorithm-part-1/
 
 ![image.jpeg](https://velog.velcdn.com/images/jshme/post/833cfebe-6b7c-424e-a693-f9e8ab5b4a94/image.png)
 *https://velog.io/@jshme/diff-algorithm-deep-dive-1*
@@ -28,5 +26,13 @@ greedy 한 myers 알고리즘을 기반으로, global optimum 를 구해서 변�
 분석 시간이 myers 보다는 오래 걸리지만, 최소한의 변경사항을 보여주기 때문에 큰 파일에서의 diff 를 보기에 유용하다고 하네요.
 
 ### patience
+
+> https://blog.jcoglan.com/2017/09/19/the-patience-diff-algorithm/
+
+Longest Common Subsequences 알고리즘을 활용하여, 최대로 일치하는 부분을 찾아내고 이를 기준으로 문장을 나눈 뒤 일치하지 않는 부분에는 myers 알고리즘을 수행하고 일치하는 부분은 그대로 두는 방식으로 동작합니다.
+
+> The first thing to note is that patience diff is not a diff algorithm in and of itself. What it really is is a method of matching up lines in two versions of a document in order to break them into smaller pieces, before using an actual diff algorithm like Myers on those pieces.
+
+> https://blog.jcoglan.com/2017/09/19/the-patience-diff-algorithm/
 
 ### histogram
