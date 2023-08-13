@@ -27,8 +27,6 @@ https://velog.io/@jshme/diff-algorithm-deep-dive-1
 greedy 한 myers 알고리즘을 기반으로, global optimum 를 구해서 변경사항을 가능한 최소로 보여주는 알고리즘
 분석 시간이 myers 보다는 오래 걸리지만, 최소한의 변경사항을 보여주기 때문에 큰 파일에서의 diff 를 보기에 유용하다고 하네요.
 
-코드를 직접봐야... 알 것 같은데, LCS 를 쓰는 것 같네요. (확실치 않음)
-
 ### patience
 
 ### histogram
